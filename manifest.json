@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Smart Web Assistant",
+  "version": "1.0.0",
+  "description": "An AI-powered reading and research assistant that reads web pages and maintains a contextual chat history using Gemini.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
