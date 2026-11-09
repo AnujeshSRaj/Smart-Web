@@ -59,6 +59,10 @@ function extractContentFromDOM(dom) {
     contentRoot = clone;
   }
 
+  clone.querySelectorAll('h1').forEach((el) => el.prepend('# '));
+  clone.querySelectorAll('h2').forEach((el) => el.prepend('## '));
+  clone.querySelectorAll('h3').forEach((el) => el.prepend('### '));
+
   const rawText = contentRoot.textContent || '';
   const normalised = rawText
     .replace(/\r\n/g, '\n')

@@ -85,6 +85,11 @@
   }
 
   // ── Extract and normalise text ──────────────────────────────────────────────
+  // Prefix headings with Markdown markers so sections remain semantically structured
+  clone.querySelectorAll('h1').forEach((el) => el.prepend('# '));
+  clone.querySelectorAll('h2').forEach((el) => el.prepend('## '));
+  clone.querySelectorAll('h3').forEach((el) => el.prepend('### '));
+
   const rawText = contentRoot.innerText || contentRoot.textContent || '';
 
   // Collapse runs of whitespace / blank lines into single spaces or newlines.
@@ -94,8 +99,15 @@
     .replace(/\n{3,}/g, '\n\n')      // Collapse multiple blank lines
     .trim();
 
+  // If user highlighted text on the active page, prioritize it at the top
+  const selectedText = window.getSelection ? window.getSelection().toString().trim() : '';
+  let fullExtractedText = normalised;
+  if (selectedText && selectedText.length >= 20) {
+    fullExtractedText = `[User Selected Passage]\n${selectedText}\n\n[Page Content]\n${normalised}`;
+  }
+
   // Apply the character limit.
-  const text = normalised.slice(0, MAX_CHARS);
+  const text = fullExtractedText.slice(0, MAX_CHARS);
 
   return {
     text,

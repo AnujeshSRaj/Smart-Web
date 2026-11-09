@@ -9,8 +9,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "test": "node --test tests/health.test.js tests/chat.test.js tests/conversations.test.js tests/extension-dom-security.test.js tests/communication-security.test.js",
-    "test:coverage": "node --test --experimental-test-coverage tests/health.test.js tests/chat.test.js tests/conversations.test.js tests/extension-dom-security.test.js tests/communication-security.test.js",
+    "test": "node --test tests/health.test.js tests/chat.test.js tests/conversations.test.js tests/extension-dom-security.test.js tests/communication-security.test.js tests/context-extractor.test.js",
+    "test:coverage": "node --test --experimental-test-coverage tests/health.test.js tests/chat.test.js tests/conversations.test.js tests/extension-dom-security.test.js tests/communication-security.test.js tests/context-extractor.test.js",
     "benchmark": "node tests/performance-benchmark.js",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate"

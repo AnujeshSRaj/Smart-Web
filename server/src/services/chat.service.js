@@ -2,6 +2,7 @@ import { config } from '../config/env.js';
 import { callGroq } from './groq.service.js';
 import { createError } from '../errors/app-error.js';
 import { getConversation, getMessages, persistExchange } from '../db/conversations.js';
+import { extractTargetedContext } from './context-extractor.js';
 
 function buildSystemPrompt(pageContext) {
   const instructions = `You are Smart Web Assistant, a helpful AI that answers questions about webpages.
@@ -33,8 +34,16 @@ export async function answerPageQuestion({ userId, input, apiKey }) {
   const storedHistory = conversation ? await getMessages(conversation.id, userId, maxMessages) : [];
   // Database history is authoritative; clients cannot inject assistant turns.
   const priorMessages = storedHistory.map(({ role, content }) => ({ role, content }));
+  const targetedContext = extractTargetedContext({
+    pageContext,
+    question,
+    pageTitle,
+    pageUrl,
+    maxChars: config.maxContextChars,
+  });
+
   const messages = [
-    { role: 'system', content: buildSystemPrompt(pageContext) },
+    { role: 'system', content: buildSystemPrompt(targetedContext) },
     ...priorMessages,
     { role: 'user', content: question },
   ];

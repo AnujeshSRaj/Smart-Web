@@ -10,7 +10,7 @@
     "message_ordering": "Database-generated sequence per inserted message"
   },
   "tests": {
-    "passed": 44,
+    "passed": 50,
     "failed": 0,
     "coverage": {
       "line_percent": 78.29,
@@ -25,7 +25,8 @@
       "client-supplied conversation history and retired model IDs rejected",
       "Postgres-style fixed-window quota isolation by user in the test adapter",
       "extension bearer forwarding and API key header handling",
-      "DOM extraction and XSS sanitization"
+      "DOM extraction and XSS sanitization",
+      "hierarchical anchor-target context extraction with stop-word and metadata scoring"
     ],
     "database_integration_tested": false,
     "rls_migration_test_type": "static migration structure check; not a live Postgres behavior test"
@@ -40,6 +41,7 @@
     "drizzle_migrations_generated": true,
     "https_backend_url_configurable": true,
     "container_files": [
+      "Dockerfile",
       "server/Dockerfile",
       "server/.dockerignore"
     ],

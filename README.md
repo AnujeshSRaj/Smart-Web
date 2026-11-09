@@ -7,7 +7,8 @@ Chrome extension that extracts readable page text and lets a signed-in user ask 
 - `extension/`: Manifest V3 popup, DOM extraction, hosted Neon Auth sign-in, and HTTPS API client.
 - `server/src/app.js`: HTTP composition root. It applies security headers, exact-origin CORS, request IDs, authentication, shared quotas, body limits, routes, and error handling.
 - `server/src/controllers/`: HTTP adapters only. They translate validated requests into application service calls.
-- `server/src/services/`: use cases for chatting and conversation management. Chat history is read from the server database, not accepted from the client.
+- `server/src/services/`: use cases for chatting, targeted context extraction, and conversation management. Chat history is read from the server database, not accepted from the client.
+- `server/src/services/context-extractor.js`: hierarchical context extraction pipeline combining metadata matching, Paragraph 1 lead anchor preservation, and query keyword/coverage scoring.
 - `server/src/db/`: Drizzle persistence, atomic chat writes, ownership-scoped queries, and Postgres-backed rate limits.
 - `server/src/middleware/`: Neon Auth JWT verification, validation, request context, and user rate limiting.
 - `server/src/config/`: validated environment configuration and the bounded Groq model list.
