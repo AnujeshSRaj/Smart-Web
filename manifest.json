@@ -10,10 +10,11 @@
     "tabs"
   ],
   "host_permissions": [
-    "https://smart-web-updated12-266348641987.us-east5.run.app/*"
+    "https://*.run.app/*",
+    "http://localhost:3000/*"
   ],
   "externally_connectable": {
-    "matches": ["https://smart-web-updated12-266348641987.us-east5.run.app/*"]
+    "matches": ["https://*.run.app/*"]
   },
   "background": { "service_worker": "extension/background.js" },
   "action": {

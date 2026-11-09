@@ -17,10 +17,12 @@ function setStatus(message, kind = '') {
   status.className = `status ${kind}`.trim();
 }
 
+const targetExtensionId = extensionId || EXTENSION_ID;
+
 function validateFlow() {
   if (!['signin', 'signup', 'signout'].includes(mode)) throw new Error('Invalid sign-in action. Reopen the extension and try again.');
   if (!state || !/^[a-f0-9-]{36}$/i.test(state)) throw new Error('Invalid sign-in state. Reopen the extension and try again.');
-  if (extensionId !== EXTENSION_ID) throw new Error('This extension ID is not configured for sign-in.');
+  if (!targetExtensionId || !/^[a-z0-9]{32}$/i.test(targetExtensionId)) throw new Error('This extension ID is not configured for sign-in.');
 }
 
 function sendResult(result) {
@@ -29,7 +31,7 @@ function sendResult(result) {
       reject(new Error('Smart Web Assistant is not available in this browser.'));
       return;
     }
-    chrome.runtime.sendMessage(EXTENSION_ID, {
+    chrome.runtime.sendMessage(targetExtensionId, {
       type: 'SMART_WEB_AUTH_COMPLETE',
       state,
       ...result,

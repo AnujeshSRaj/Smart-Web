@@ -30,8 +30,8 @@ NODE_ENV=production
 HOST=0.0.0.0
 DB_POOL_MAX=5
 GROQ_MODEL=openai/gpt-oss-20b
-NEON_AUTH_BASE_URL=https://ep-spring-breeze-b5te0gvr.neonauth.c-7.us-east-2.aws.neon.tech/neondb/auth
-NEON_AUTH_JWKS_URL=https://ep-spring-breeze-b5te0gvr.neonauth.c-7.us-east-2.aws.neon.tech/neondb/auth/.well-known/jwks.json
+NEON_AUTH_BASE_URL=https://YOUR_AUTH_HOST/neondb/auth
+NEON_AUTH_JWKS_URL=https://YOUR_AUTH_HOST/neondb/auth/.well-known/jwks.json
 CORS_ORIGINS=chrome-extension://YOUR_EXTENSION_ID
 ```
 
